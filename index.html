@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="try">도둑질 시도하기</button>
+    <div id="hp">체력:100</div>
+    <input id="howmany" value='1' placeholder="입력" maxlength="3" type="number"> 
+    <div style="overflow:auto;height: 120px;border: black solid 1px;width: 600px;" id="log"  >----</div>
+<script>
+    activate=1
+    hpD=100
+    trybutton = document.getElementById('try')
+    box = document.getElementById('log')
+    hp = document.getElementById('hp')
+    function writeNewRow(value) {
+    box.innerHTML += '<br/>' + value
+}
+    trybutton.addEventListener('click',function () {
+        if (activate ==1){
+            activate=0
+            trybutton.style.color='red'
+            setTimeout(function(){
+                trybutton.style.color='black'
+                activate=1
+            },100)
+            writeNewRow('당신은 도둑질을 시도했다가 걸려서 쳐맞았습니다');
+            hpD -= 10
+            box.scrollTop = box.scrollHeight;
+            hp.innerHTML='체력:'+hpD
+            if (hpD == 0){
+                setTimeout(function(){
+                    alert('너는 뒤졌습니다. 이제 도둑질 하고싶어도 못합니다.')
+                    activate=0
+            },100)
+            }
+        }
+})
+</script>
+</body>
+</html>
